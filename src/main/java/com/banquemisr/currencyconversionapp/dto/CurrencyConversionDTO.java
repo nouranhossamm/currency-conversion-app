@@ -2,12 +2,13 @@
 
 package com.banquemisr.currencyconversionapp.dto;
 
-import lombok.Data;
+import lombok.Builder;
 
-@Data
-public class CurrencyConversionDTO {
-    private String base_code;
-    private String target_code;
-    private Double conversion_rate;
-    private Double conversion_result;
+@Builder
+public record CurrencyConversionDTO(
+	String base_code,
+	String target_code,
+	Double conversion_rate,
+	Double conversion_result
+) {
 }

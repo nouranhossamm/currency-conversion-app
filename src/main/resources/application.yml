@@ -1,1 +1,44 @@
 external-api: ${API_URL}
+
+available:
+  currencies:
+    -
+      name: "United States Dollar"
+      code: "USD"
+      icon_url: "http"
+    -
+      name: "Euro"
+      code: "EUR"
+      icon_url: "http"
+
+    - name: "Pound Sterling"
+      code: "GBP"
+      icon_url: "http"
+
+    - name: "UAE Dirham"
+      code: "AED"
+      icon_url: "http"
+
+    - name: "Bahraini Dinar"
+      code: "BHD"
+      icon_url: "http"
+
+    - name: "Japanese Yen"
+      code: "JPY"
+      icon_url: "http"
+
+    - name: "Kuwaiti Dinar"
+      code: "KWD"
+      icon_url: "http"
+
+    - name: "Omani Rial"
+      code: "OMR"
+      icon_url: "http"
+
+    - name: "Saudi Riyal"
+      code: "SAR"
+      icon_url: "http"
+
+    - name: "Qatari Riyal"
+      code: "QAR"
+      icon_url: "http"
