@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Set;
 
 @RestController
-@RequestMapping("api/v1/currencies")
+@RequestMapping("/api/v1/currencies")
 public class ExchangeRateController {
     private final ExchangeRateService exchangeRateService;
 
