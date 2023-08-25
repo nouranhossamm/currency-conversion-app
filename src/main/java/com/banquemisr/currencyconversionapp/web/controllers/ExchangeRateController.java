@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Set;
 
 @RestController
-@RequestMapping("/api/v1/currencies")
+@RequestMapping("api/v1/currencies")
 public class ExchangeRateController {
     private final ExchangeRateService exchangeRateService;
 
@@ -26,7 +26,7 @@ public class ExchangeRateController {
         return this.exchangeRateService.getAvailableCurrencies();
     }
 
-    @GetMapping("/{current}/{target}")
+    @GetMapping("{current}/{target}")
     public UnitCurrencyConversionDTO getCurrencyConversion(
         @PathVariable("current") String current,
         @PathVariable("target") String target
@@ -34,7 +34,7 @@ public class ExchangeRateController {
         return this.exchangeRateService.currencyConversion(current, target);
     }
 
-    @GetMapping("/{current}/{target}/{amount}")
+    @GetMapping("{current}/{target}/{amount}")
     public CurrencyConversionDTO getCurrencyConversionWithAmount(
         @PathVariable("current") String current,
         @PathVariable("target") String target,
@@ -43,7 +43,7 @@ public class ExchangeRateController {
         return this.exchangeRateService.currencyConversion(current, target, amount);
     }
 
-    @GetMapping("/{current}")
+    @GetMapping("{current}")
     public ExchangeRateDataDTO getExchangeRate(@PathVariable("current") String current){
         return this.exchangeRateService.getExchangeRate(current);
     }
