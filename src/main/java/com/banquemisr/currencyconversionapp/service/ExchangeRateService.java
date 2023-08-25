@@ -4,14 +4,10 @@ package com.banquemisr.currencyconversionapp.service;
 import com.banquemisr.currencyconversionapp.client.ExchangeRateAPIClient;
 import com.banquemisr.currencyconversionapp.dto.*;
 import com.banquemisr.currencyconversionapp.props.AppProps;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -20,16 +16,13 @@ public class ExchangeRateService {
     private final ExchangeRateAPIClient exchangeRateAPIClient;
     private final AppProps appProps;
 
-    private final Set<CurrencyDTO> currencyDTOSet;
-
     public ExchangeRateService(ExchangeRateAPIClient exchangeRateAPIClient, AppProps appProps) {
         this.exchangeRateAPIClient = exchangeRateAPIClient;
         this.appProps = appProps;
-        this.currencyDTOSet = this.appProps.getCurrencies();
     }
 
     public Set<CurrencyDTO> getAvailableCurrencies() {
-        return this.currencyDTOSet;
+        return this.appProps.getCurrencies();
     }
 
     public UnitCurrencyConversionDTO currencyConversion(String current, String target) {
@@ -45,6 +38,15 @@ public class ExchangeRateService {
     public ExchangeRateDataDTO currencyComparison(String current, List<String> targets) {
         ExchangeRateDataDTO response = exchangeRateAPIClient.getCurrencyInfo(current);
 
+        List<String> codes = new ArrayList<>();
+        for (CurrencyDTO code : appProps.getCurrencies()){
+            codes.add(code.code());
+        }
+        List<String> filteredList = targets.stream().filter(codes::contains)
+                .toList();
+        if (filteredList.size() != targets.size()){
+            throw new RuntimeException("Not all currencies are in the list");
+        }
         if (response.result().equals("success")) {
             String baseCode = response.base_code();
             Map<String, Double> conversionRates = response.conversion_rates();

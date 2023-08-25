@@ -51,3 +51,7 @@ public class ExchangeRateController {
                 requestBodyDTO.base_code(), requestBodyDTO.target_codes());
     }
 }
+
+//error handling
+//response entity
+//validation
