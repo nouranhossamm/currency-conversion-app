@@ -15,7 +15,8 @@ import java.util.Set;
 @Component
 @Configuration
 @ConfigurationProperties(prefix = "available")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class AppProps {
