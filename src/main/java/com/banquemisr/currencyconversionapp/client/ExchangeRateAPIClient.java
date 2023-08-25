@@ -9,16 +9,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @FeignClient(name = "ExchangeRateAPI", url = "${external-api}")
 public interface ExchangeRateAPIClient {
-    @GetMapping("/latest/{currency_code}")
+    @GetMapping("latest/{currency_code}")
     ExchangeRateDataDTO getCurrencyInfo(@PathVariable("currency_code") String currency_code);
 
-    @GetMapping("/pair/{current}/{target}")
+    @GetMapping("pair/{current}/{target}")
     UnitCurrencyConversionDTO getCurrencyConversion(
             @PathVariable("current") String current,
             @PathVariable("target") String target
     );
 
-    @GetMapping("/pair/{current}/{target}/{amount}")
+    @GetMapping("pair/{current}/{target}/{amount}")
     CurrencyConversionDTO getCurrencyConversionWithAmount(
             @PathVariable("current") String current,
             @PathVariable("target") String target,
