@@ -1,15 +1,10 @@
 package com.banquemisr.currencyconversionapp.web.controllers;
 
-import com.banquemisr.currencyconversionapp.dto.CurrencyConversionDTO;
-import com.banquemisr.currencyconversionapp.dto.CurrencyDTO;
-import com.banquemisr.currencyconversionapp.dto.ExchangeRateDataDTO;
-import com.banquemisr.currencyconversionapp.dto.UnitCurrencyConversionDTO;
+import com.banquemisr.currencyconversionapp.dto.*;
 import com.banquemisr.currencyconversionapp.service.ExchangeRateService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -46,5 +41,13 @@ public class ExchangeRateController {
     @GetMapping("{current}")
     public ExchangeRateDataDTO getExchangeRate(@PathVariable("current") String current){
         return this.exchangeRateService.getExchangeRate(current);
+    }
+
+    @GetMapping("comparison")
+    public ExchangeRateDataDTO getCurrencyComparison(
+            @RequestBody CurrencyComparisonRequestBodyDTO requestBodyDTO
+    ) {
+        return this.exchangeRateService.currencyComparison(
+                requestBodyDTO.base_code(), requestBodyDTO.target_codes());
     }
 }
