@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @FeignClient(name = "ExchangeRateAPI", url = "${external-api}")
 public interface ExchangeRateAPIClient {
-    @GetMapping("/latest/{currency_code}")
+    @GetMapping("latest/{currency_code}")
     ExchangeRateDataDTO getCurrencyInfo(@PathVariable("currency_code") String currency_code);
 
     @GetMapping("pair/{current}/{target}")
