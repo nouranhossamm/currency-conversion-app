@@ -1,19 +1,14 @@
 package com.banquemisr.currencyconversionapp.web.controllers;
 
-import com.banquemisr.currencyconversionapp.dto.CurrencyConversionDTO;
-import com.banquemisr.currencyconversionapp.dto.CurrencyDTO;
-import com.banquemisr.currencyconversionapp.dto.ExchangeRateDataDTO;
-import com.banquemisr.currencyconversionapp.dto.UnitCurrencyConversionDTO;
+import com.banquemisr.currencyconversionapp.dto.*;
 import com.banquemisr.currencyconversionapp.service.ExchangeRateService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Set;
 
 @RestController
-@RequestMapping("/api/v1/currencies")
+@RequestMapping("api/v1/currencies")
 public class ExchangeRateController {
     private final ExchangeRateService exchangeRateService;
 
@@ -26,7 +21,7 @@ public class ExchangeRateController {
         return this.exchangeRateService.getAvailableCurrencies();
     }
 
-    @GetMapping("/{current}/{target}")
+    @GetMapping("{current}/{target}")
     public UnitCurrencyConversionDTO getCurrencyConversion(
         @PathVariable("current") String current,
         @PathVariable("target") String target
@@ -34,7 +29,7 @@ public class ExchangeRateController {
         return this.exchangeRateService.currencyConversion(current, target);
     }
 
-    @GetMapping("/{current}/{target}/{amount}")
+    @GetMapping("{current}/{target}/{amount}")
     public CurrencyConversionDTO getCurrencyConversionWithAmount(
         @PathVariable("current") String current,
         @PathVariable("target") String target,
@@ -43,8 +38,20 @@ public class ExchangeRateController {
         return this.exchangeRateService.currencyConversion(current, target, amount);
     }
 
-    @GetMapping("/{current}")
+    @GetMapping("{current}")
     public ExchangeRateDataDTO getExchangeRate(@PathVariable("current") String current){
         return this.exchangeRateService.getExchangeRate(current);
     }
+
+    @GetMapping("comparison")
+    public ExchangeRateDataDTO getCurrencyComparison(
+            @RequestBody CurrencyComparisonRequestBodyDTO requestBodyDTO
+    ) {
+        return this.exchangeRateService.currencyComparison(
+                requestBodyDTO.base_code(), requestBodyDTO.target_codes());
+    }
 }
+
+//error handling
+//response entity
+//validation
