@@ -7,6 +7,7 @@ import com.banquemisr.currencyconversionapp.exception.NotFoundException;
 import com.banquemisr.currencyconversionapp.props.AppProps;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Service;
+import org.springframework.cache.annotation.Cacheable;
 
 import java.util.*;
 import java.util.stream.Collectors;
