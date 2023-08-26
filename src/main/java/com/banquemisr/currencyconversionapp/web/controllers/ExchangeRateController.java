@@ -38,20 +38,18 @@ public class ExchangeRateController {
         return this.exchangeRateService.currencyConversion(current, target, amount);
     }
 
-    @GetMapping("{current}")
+    // @GetMapping("{current}")
     public ExchangeRateDataDTO getExchangeRate(@PathVariable("current") String current){
         return this.exchangeRateService.getExchangeRate(current);
     }
 
     @GetMapping("comparison")
     public ExchangeRateDataDTO getCurrencyComparison(
-            @RequestBody CurrencyComparisonRequestBodyDTO requestBodyDTO
+        @RequestBody CurrencyComparisonRequestBodyDTO requestBodyDTO
     ) {
         return this.exchangeRateService.currencyComparison(
-                requestBodyDTO.base_code(), requestBodyDTO.target_codes());
+            requestBodyDTO.base_code(),
+            requestBodyDTO.target_codes()
+        );
     }
 }
-
-//error handling
-//response entity
-//validation

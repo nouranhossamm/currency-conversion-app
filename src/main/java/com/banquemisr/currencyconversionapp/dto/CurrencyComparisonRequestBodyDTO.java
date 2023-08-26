@@ -8,5 +8,5 @@ import java.util.List;
 public record CurrencyComparisonRequestBodyDTO(
     String base_code,
     List<String> target_codes
-)
-{}
+) {
+}
