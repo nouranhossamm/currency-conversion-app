@@ -14,7 +14,7 @@ public class GlobalExceptionHandler {
                 .status_code(HttpStatus.BAD_REQUEST.value())
                 .status(HttpStatus.BAD_REQUEST.name())
                 .build();
-        return ResponseEntity.status(response.getStatus_code()).body(response);
+        return ResponseEntity.status(response.status_code()).body(response);
     }
 
     @ExceptionHandler(value = NotFoundException.class)
@@ -26,6 +26,6 @@ public class GlobalExceptionHandler {
                 .status(HttpStatus.NOT_FOUND.name())
                 .build();
 
-        return ResponseEntity.status(response.getStatus_code()).body(response);
+        return ResponseEntity.status(response.status_code()).body(response);
     }
 }
