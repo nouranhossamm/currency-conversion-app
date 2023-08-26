@@ -5,43 +5,43 @@ available:
     -
       name: "United States Dollar"
       code: "USD"
-      icon_url: "http"
+      icon_url: "https://api.exchangerate-api.com/flag-images/US.gif"
     -
       name: "Euro"
       code: "EUR"
-      icon_url: "http"
+      icon_url: "https://api.exchangerate-api.com/flag-images/EU.gif"
 
     - name: "Pound Sterling"
       code: "GBP"
-      icon_url: "http"
+      icon_url: "https://api.exchangerate-api.com/flag-images/GB.gif"
 
     - name: "UAE Dirham"
       code: "AED"
-      icon_url: "http"
+      icon_url: "https://api.exchangerate-api.com/flag-images/AE.gif"
 
     - name: "Bahraini Dinar"
       code: "BHD"
-      icon_url: "http"
+      icon_url: "https://api.exchangerate-api.com/flag-images/BH.gif"
 
     - name: "Japanese Yen"
       code: "JPY"
-      icon_url: "http"
+      icon_url: "https://api.exchangerate-api.com/flag-images/JP.gif"
 
     - name: "Kuwaiti Dinar"
       code: "KWD"
-      icon_url: "http"
+      icon_url: "https://api.exchangerate-api.com/flag-images/KW.gif"
 
     - name: "Omani Rial"
       code: "OMR"
-      icon_url: "http"
+      icon_url: "https://api.exchangerate-api.com/flag-images/OM.gif
 
     - name: "Saudi Riyal"
       code: "SAR"
-      icon_url: "http"
+      icon_url: "https://api.exchangerate-api.com/flag-images/SA.gif"
 
     - name: "Qatari Riyal"
       code: "QAR"
-      icon_url: "http"
+      icon_url: "https://api.exchangerate-api.com/flag-images/QA.gif"
 
 server:
   port: 8099
