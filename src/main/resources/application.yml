@@ -3,6 +3,10 @@ external-api: ${API_URL}
 available:
   currencies:
     -
+      name: "Egyptian Pound"
+      code: "EGP"
+      icon_url: "https://www.xe.com/static-images/egp.static.df88137050e409e79db3433d9c8b1493.svg"
+    -
       name: "United States Dollar"
       code: "USD"
       # icon_url: "https://api.exchangerate-api.com/flag-images/US.gif"
