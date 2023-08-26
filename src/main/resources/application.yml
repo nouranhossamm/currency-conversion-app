@@ -42,3 +42,6 @@ available:
     - name: "Qatari Riyal"
       code: "QAR"
       icon_url: "http"
+
+server:
+  port: 8099

@@ -7,5 +7,6 @@ import java.util.List;
 @Builder
 public record CurrencyComparisonRequestBodyDTO(
     String base_code,
-    List<String> target_codes) {
+    List<String> target_codes
+) {
 }
