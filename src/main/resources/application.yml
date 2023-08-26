@@ -26,12 +26,12 @@ available:
     - name: "Bahraini Dinar"
       code: "BHD"
       # icon_url: "https://api.exchangerate-api.com/flag-images/BH.gif"
-      icon_url: ""
+      icon_url: "https://www.xe.com/static-images/bhd.static.1383834e97690952aa4f128aff997809.svg"
 
     - name: "Japanese Yen"
       code: "JPY"
       # icon_url: "https://api.exchangerate-api.com/flag-images/JP.gif"
-      icon_url: ""
+      icon_url: "https://www.xe.com/static-images/jpy.static.238642084e415a2c2304c9b3da2308d9.svg"
 
     - name: "Kuwaiti Dinar"
       code: "KWD"
@@ -41,7 +41,7 @@ available:
     - name: "Omani Rial"
       code: "OMR"
       # icon_url: "https://api.exchangerate-api.com/flag-images/OM.gif
-      icon_url: ""
+      icon_url: "https://www.xe.com/static-images/omr.static.9645a29f2292d23786b33abe40817cf5.svg"
 
     - name: "Saudi Riyal"
       code: "SAR"
