@@ -15,3 +15,6 @@ public class CurrencyConversionAppApplication {
     }
 
 }
+
+//    http://localhost:8099/swagger-ui/index.html
+//    http://localhost:8099/v3/api-docs/
