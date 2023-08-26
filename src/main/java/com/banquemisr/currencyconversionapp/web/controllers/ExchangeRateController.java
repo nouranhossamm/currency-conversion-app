@@ -38,7 +38,7 @@ public class ExchangeRateController {
         return this.exchangeRateService.currencyConversion(current, target, amount);
     }
 
-    // @GetMapping("{current}")
+    @GetMapping("{current}")
     public ExchangeRateDataDTO getExchangeRate(@PathVariable("current") String current){
         return this.exchangeRateService.getExchangeRate(current);
     }
