@@ -14,15 +14,15 @@ public interface ExchangeRateAPIClient {
 
     @GetMapping("pair/{current}/{target}")
     UnitCurrencyConversionDTO getCurrencyConversion(
-            @PathVariable("current") String current,
-            @PathVariable("target") String target
+        @PathVariable("current") String current,
+        @PathVariable("target") String target
     );
 
     @GetMapping("pair/{current}/{target}/{amount}")
     CurrencyConversionDTO getCurrencyConversionWithAmount(
-            @PathVariable("current") String current,
-            @PathVariable("target") String target,
-            @PathVariable("amount") Double amount
+        @PathVariable("current") String current,
+        @PathVariable("target") String target,
+        @PathVariable("amount") Double amount
     );
 
 }

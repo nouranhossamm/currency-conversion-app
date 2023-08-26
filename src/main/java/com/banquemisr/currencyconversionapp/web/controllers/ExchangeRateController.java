@@ -45,13 +45,11 @@ public class ExchangeRateController {
 
     @GetMapping("comparison")
     public ExchangeRateDataDTO getCurrencyComparison(
-            @RequestBody CurrencyComparisonRequestBodyDTO requestBodyDTO
+        @RequestBody CurrencyComparisonRequestBodyDTO requestBodyDTO
     ) {
         return this.exchangeRateService.currencyComparison(
-                requestBodyDTO.base_code(), requestBodyDTO.target_codes());
+            requestBodyDTO.base_code(),
+            requestBodyDTO.target_codes()
+        );
     }
 }
-
-//error handling
-//response entity
-//validation

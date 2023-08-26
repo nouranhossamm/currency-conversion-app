@@ -16,13 +16,16 @@ public class GlobalExceptionHandler {
                 .build();
         return ResponseEntity.status(response.getStatusCode()).body(response);
     }
+
     @ExceptionHandler(value = NotFoundException.class)
-    public ResponseEntity<Object> handleNotFoundException(NotFoundException exception){
-        Response<Object> response = Response.builder()
+    public ResponseEntity<Object> handleNotFoundException(NotFoundException exception) {
+        Response<Object> response = Response
+                .builder()
                 .message(exception.getMessage())
                 .statusCode(HttpStatus.NOT_FOUND.value())
                 .status(HttpStatus.NOT_FOUND.name())
                 .build();
+
         return ResponseEntity.status(response.getStatusCode()).body(response);
     }
 }
