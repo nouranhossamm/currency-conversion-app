@@ -4,11 +4,11 @@ import com.banquemisr.currencyconversionapp.dto.*;
 import com.banquemisr.currencyconversionapp.service.ExchangeRateService;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Set;
 
 @RestController
 @RequestMapping("api/v1/currencies")
+@CrossOrigin(origins = "*/*", maxAge = 3600)
 public class ExchangeRateController {
     private final ExchangeRateService exchangeRateService;
 
