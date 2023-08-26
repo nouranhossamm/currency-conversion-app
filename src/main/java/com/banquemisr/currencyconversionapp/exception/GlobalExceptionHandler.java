@@ -11,10 +11,10 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = BadEntryException.class)
     public ResponseEntity<Object> badEntryException(BadEntryException exception) {
         Response<Object> response = Response.builder().message(exception.getMessage())
-                .statusCode(HttpStatus.BAD_REQUEST.value())
+                .status_code(HttpStatus.BAD_REQUEST.value())
                 .status(HttpStatus.BAD_REQUEST.name())
                 .build();
-        return ResponseEntity.status(response.getStatusCode()).body(response);
+        return ResponseEntity.status(response.getStatus_code()).body(response);
     }
 
     @ExceptionHandler(value = NotFoundException.class)
@@ -22,10 +22,10 @@ public class GlobalExceptionHandler {
         Response<Object> response = Response
                 .builder()
                 .message(exception.getMessage())
-                .statusCode(HttpStatus.NOT_FOUND.value())
+                .status_code(HttpStatus.NOT_FOUND.value())
                 .status(HttpStatus.NOT_FOUND.name())
                 .build();
 
-        return ResponseEntity.status(response.getStatusCode()).body(response);
+        return ResponseEntity.status(response.getStatus_code()).body(response);
     }
 }
