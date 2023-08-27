@@ -70,8 +70,8 @@ public class ExchangeRateController {
         @RequestBody CurrencyComparisonRequestBodyDTO requestBodyDTO
     ) {
         ExchangeRateDataDTO exchangeRateDataDTO = this.exchangeRateService.currencyComparison(
-            requestBodyDTO.base_code(),
-            requestBodyDTO.target_codes()
+            requestBodyDTO.baseCode(),
+            requestBodyDTO.targetCodes()
         );
         Response<ExchangeRateDataDTO> response = new Response<>(200,
                 "success",

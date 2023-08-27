@@ -6,7 +6,7 @@ import lombok.*;
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public record Response<T>(
-    Integer status_code,
+    Integer statusCode,
     String status,
     String message,
     T data

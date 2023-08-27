@@ -77,8 +77,8 @@ public class ExchangeRateService {
 
         if (response.result().equals("success")) {
             Map<String, Double> filteredConversionRates = new HashMap<>();
-            String baseCode = response.base_code();
-            Map<String, Double> conversionRates = response.conversion_rates();
+            String baseCode = response.baseCode();
+            Map<String, Double> conversionRates = response.conversionRates();
 
             for (String target : targets) {
                 if (conversionRates.containsKey(target)) {
@@ -89,9 +89,9 @@ public class ExchangeRateService {
             return ExchangeRateDataDTO
                 .builder()
                 .result("success")
-                .base_code(baseCode)
-                .target_codes(filteredConversionRates.keySet().stream().collect(Collectors.toList()))
-                .conversion_rates(filteredConversionRates)
+                .baseCode(baseCode)
+                .targetCodes(filteredConversionRates.keySet().stream().collect(Collectors.toList()))
+                .conversionRates(filteredConversionRates)
                 .build();
         }
 
