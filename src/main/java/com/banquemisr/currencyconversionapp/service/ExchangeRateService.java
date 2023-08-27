@@ -2,12 +2,12 @@ package com.banquemisr.currencyconversionapp.service;
 
 import com.banquemisr.currencyconversionapp.client.ExchangeRateAPIClient;
 import com.banquemisr.currencyconversionapp.dto.*;
-import com.banquemisr.currencyconversionapp.exception.BadEntryException;
 import com.banquemisr.currencyconversionapp.exception.NotFoundException;
 import com.banquemisr.currencyconversionapp.props.AppProps;
+import com.banquemisr.currencyconversionapp.validation.AmountValidation;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.stereotype.Service;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Service;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -17,13 +17,17 @@ import java.util.stream.Collectors;
 public class ExchangeRateService {
     private final ExchangeRateAPIClient exchangeRateAPIClient;
     private final AppProps appProps;
+    private final AmountValidation amountValidation;
 
-    public ExchangeRateService(ExchangeRateAPIClient exchangeRateAPIClient, AppProps appProps) {
+    public ExchangeRateService(ExchangeRateAPIClient exchangeRateAPIClient, AppProps appProps, AmountValidation amountValidation) {
         this.exchangeRateAPIClient = exchangeRateAPIClient;
         this.appProps = appProps;
+        this.amountValidation = amountValidation;
     }
 
+//    @Cacheable(value = "currencies", key = "#root.methodName")
     public Set<CurrencyDTO> getAvailableCurrencies() {
+        System.out.println("Redix not used");
         return this.appProps.getCurrencies();
     }
 
@@ -32,14 +36,12 @@ public class ExchangeRateService {
     }
 
     public CurrencyConversionDTO currencyConversion(String current, String target, Double amount) {
-        if (amount <= 0) {
-            throw new BadEntryException("The amount should be more than 0");
-        }
-
+        amountValidation.validate(amount);
         return this.exchangeRateAPIClient.getCurrencyConversionWithAmount(current, target, amount);
     }
-
+//    @Cacheable(value = "currencies", key = "#root.methodName")
     public ExchangeRateDataDTO getExchangeRate(String current) {
+        System.out.println("Redix not used");
         List<String> codes = new ArrayList<>();
 
         for (CurrencyDTO code : appProps.getCurrencies()) {

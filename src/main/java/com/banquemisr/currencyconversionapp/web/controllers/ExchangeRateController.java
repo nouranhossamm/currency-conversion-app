@@ -1,7 +1,9 @@
 package com.banquemisr.currencyconversionapp.web.controllers;
 
 import com.banquemisr.currencyconversionapp.dto.*;
+import com.banquemisr.currencyconversionapp.model.entities.Response;
 import com.banquemisr.currencyconversionapp.service.ExchangeRateService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,39 +19,64 @@ public class ExchangeRateController {
     }
 
     @GetMapping
-    public Set<CurrencyDTO> getAvailableCurrencies() {
-        return this.exchangeRateService.getAvailableCurrencies();
+    public ResponseEntity<Response<Set<CurrencyDTO>>> getAvailableCurrencies() {
+        Set<CurrencyDTO> currencyDTOS = this.exchangeRateService.getAvailableCurrencies();
+        Response<Set<CurrencyDTO>> response = new Response<>(200,
+                "success",
+                "Currency list retrieved successfully",
+                currencyDTOS);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("{current}/{target}")
-    public UnitCurrencyConversionDTO getCurrencyConversion(
+    public ResponseEntity<Response<UnitCurrencyConversionDTO>> getCurrencyConversion(
         @PathVariable("current") String current,
         @PathVariable("target") String target
     ) {
-        return this.exchangeRateService.currencyConversion(current, target);
+        UnitCurrencyConversionDTO currencyConversion = this.exchangeRateService.currencyConversion(current, target);
+        Response<UnitCurrencyConversionDTO> response = new Response<>(200,
+                "success",
+                "Currency converted successfully",
+                currencyConversion);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("{current}/{target}/{amount}")
-    public CurrencyConversionDTO getCurrencyConversionWithAmount(
+    public ResponseEntity<Response<CurrencyConversionDTO>> getCurrencyConversionWithAmount(
         @PathVariable("current") String current,
         @PathVariable("target") String target,
         @PathVariable("amount") Double amount
     ) {
-        return this.exchangeRateService.currencyConversion(current, target, amount);
+        CurrencyConversionDTO conversionDTO = this.exchangeRateService.currencyConversion(current, target, amount);
+        Response<CurrencyConversionDTO> response = new Response<>(200,
+                "success",
+                "Currency converted successfully with the provided amount",
+                conversionDTO);
+        return ResponseEntity.ok(response);
     }
 
-    // @GetMapping("{current}")
-    public ExchangeRateDataDTO getExchangeRate(@PathVariable("current") String current){
-        return this.exchangeRateService.getExchangeRate(current);
+     @GetMapping("{current}")
+    public ResponseEntity<Response<ExchangeRateDataDTO>> getExchangeRate(@PathVariable("current") String current){
+        ExchangeRateDataDTO rateDataDTO = this.exchangeRateService.getExchangeRate(current);
+         Response<ExchangeRateDataDTO> response = new Response<>(200,
+                 "success",
+                 "Currency retrieved successfully",
+                 rateDataDTO);
+         return ResponseEntity.ok(response);
     }
 
     @GetMapping("comparison")
-    public ExchangeRateDataDTO getCurrencyComparison(
+    public ResponseEntity<Response<ExchangeRateDataDTO>> getCurrencyComparison(
         @RequestBody CurrencyComparisonRequestBodyDTO requestBodyDTO
     ) {
-        return this.exchangeRateService.currencyComparison(
+        ExchangeRateDataDTO exchangeRateDataDTO = this.exchangeRateService.currencyComparison(
             requestBodyDTO.base_code(),
             requestBodyDTO.target_codes()
         );
+        Response<ExchangeRateDataDTO> response = new Response<>(200,
+                "success",
+                "Comparison done successfully",
+                exchangeRateDataDTO);
+        return ResponseEntity.ok(response);
     }
 }
