@@ -25,7 +25,7 @@ public class ExchangeRateService {
         this.amountValidation = amountValidation;
     }
 
-//    @Cacheable(value = "currencies", key = "#root.methodName")
+    @Cacheable(value = "currencies", key = "#root.methodName")
     public Set<CurrencyDTO> getAvailableCurrencies() {
         System.out.println("Redix not used");
         return this.appProps.getCurrencies();
@@ -39,7 +39,8 @@ public class ExchangeRateService {
         amountValidation.validate(amount);
         return this.exchangeRateAPIClient.getCurrencyConversionWithAmount(current, target, amount);
     }
-//    @Cacheable(value = "currencies", key = "#root.methodName")
+
+    @Cacheable(value = "currencies", key = "#root.methodName")
     public ExchangeRateDataDTO getExchangeRate(String current) {
         System.out.println("Redix not used");
         List<String> codes = new ArrayList<>();
