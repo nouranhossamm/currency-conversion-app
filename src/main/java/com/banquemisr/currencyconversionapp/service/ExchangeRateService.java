@@ -23,6 +23,7 @@ public class ExchangeRateService {
         this.appProps = appProps;
     }
 
+    @Cacheable(value = "currencies", key = "#root.methodName")
     public Set<CurrencyDTO> getAvailableCurrencies() {
         return this.appProps.getCurrencies();
     }
@@ -39,6 +40,7 @@ public class ExchangeRateService {
         return this.exchangeRateAPIClient.getCurrencyConversionWithAmount(current, target, amount);
     }
 
+    @Cacheable(value = "rates", key = "#root.methodName")
     public ExchangeRateDataDTO getExchangeRate(String current) {
         List<String> codes = new ArrayList<>();
 
