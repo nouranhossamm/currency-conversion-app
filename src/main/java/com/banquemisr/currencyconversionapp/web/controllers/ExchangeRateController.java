@@ -55,14 +55,14 @@ public class ExchangeRateController {
         return ResponseEntity.ok(response);
     }
 
-     @GetMapping("{current}")
-    public ResponseEntity<Response<ExchangeRateDataDTO>> getExchangeRate(@PathVariable("current") String current){
+    @GetMapping("{current}")
+    public ResponseEntity<Response<ExchangeRateDataDTO>> getExchangeRate(@PathVariable("current") String current) {
         ExchangeRateDataDTO rateDataDTO = this.exchangeRateService.getExchangeRate(current);
-         Response<ExchangeRateDataDTO> response = new Response<>(200,
-                 "success",
-                 "Currency retrieved successfully",
-                 rateDataDTO);
-         return ResponseEntity.ok(response);
+        Response<ExchangeRateDataDTO> response = new Response<>(200,
+                "success",
+                "Currency retrieved successfully",
+                rateDataDTO);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("comparison")

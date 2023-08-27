@@ -18,16 +18,27 @@ public class ExchangeRateService {
     private final ExchangeRateAPIClient exchangeRateAPIClient;
     private final AppProps appProps;
     private final AmountValidation amountValidation;
+    private final List<String> codes;
 
-    public ExchangeRateService(ExchangeRateAPIClient exchangeRateAPIClient, AppProps appProps, AmountValidation amountValidation) {
+    public ExchangeRateService(
+            ExchangeRateAPIClient exchangeRateAPIClient,
+            AppProps appProps,
+            AmountValidation amountValidation
+    ) {
         this.exchangeRateAPIClient = exchangeRateAPIClient;
         this.appProps = appProps;
         this.amountValidation = amountValidation;
+
+        this.codes = new ArrayList<>();
+
+        for (CurrencyDTO code : appProps.getCurrencies()) {
+            this.codes.add(code.code());
+        }
     }
 
     @Cacheable(value = "currencies", key = "#root.methodName")
     public Set<CurrencyDTO> getAvailableCurrencies() {
-        System.out.println("Redix not used");
+        System.out.println("Redis not used");
         return this.appProps.getCurrencies();
     }
 
@@ -42,12 +53,7 @@ public class ExchangeRateService {
 
     @Cacheable(value = "currencies", key = "#root.methodName")
     public ExchangeRateDataDTO getExchangeRate(String current) {
-        System.out.println("Redix not used");
-        List<String> codes = new ArrayList<>();
-
-        for (CurrencyDTO code : appProps.getCurrencies()) {
-            codes.add(code.code());
-        }
+        System.out.println("Redis not used");
 
         Optional<String> expectedCurrency = codes.stream().filter(code -> Objects.equals(code, current)).findFirst();
 
@@ -60,12 +66,6 @@ public class ExchangeRateService {
 
     public ExchangeRateDataDTO currencyComparison(String current, List<String> targets) {
         ExchangeRateDataDTO response = exchangeRateAPIClient.getCurrencyInfo(current);
-
-        List<String> codes = new ArrayList<>();
-
-        for (CurrencyDTO code : appProps.getCurrencies()) {
-            codes.add(code.code());
-        }
 
         Optional<String> expectedCurrency = codes.stream().filter(code -> Objects.equals(code, current)).findFirst();
 
@@ -90,7 +90,7 @@ public class ExchangeRateService {
                 .builder()
                 .result("success")
                 .baseCode(baseCode)
-                .targetCodes(filteredConversionRates.keySet().stream().collect(Collectors.toList()))
+                .targetCodes(new ArrayList<>(filteredConversionRates.keySet()))
                 .conversionRates(filteredConversionRates)
                 .build();
         }
