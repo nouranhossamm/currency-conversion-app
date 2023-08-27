@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
-public class GlobalExceptionHandler {
+public class CustomExceptionHandler {
     @ExceptionHandler(value = BadEntryException.class)
     public ResponseEntity<Object> badEntryException(BadEntryException exception) {
         Response<Object> response = Response.builder().message(exception.getMessage())
@@ -24,6 +24,18 @@ public class GlobalExceptionHandler {
                 .message(exception.getMessage())
                 .statusCode(HttpStatus.NOT_FOUND.value())
                 .status(HttpStatus.NOT_FOUND.name())
+                .build();
+
+        return ResponseEntity.status(response.statusCode()).body(response);
+    }
+
+    @ExceptionHandler(value = {Exception.class, Throwable.class})
+    public ResponseEntity<Object> handleGenericException(Exception exception) {
+        Response<Object> response = Response
+                .builder()
+                .message("An unexpected error occurred")
+                .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                .status(HttpStatus.INTERNAL_SERVER_ERROR.name())
                 .build();
 
         return ResponseEntity.status(response.statusCode()).body(response);
