@@ -5,12 +5,12 @@ import com.banquemisr.currencyconversionapp.dto.*;
 import com.banquemisr.currencyconversionapp.exception.NotFoundException;
 import com.banquemisr.currencyconversionapp.props.AppProps;
 import com.banquemisr.currencyconversionapp.validation.AmountValidation;
+import com.banquemisr.currencyconversionapp.validation.CurrencyExistsValidation;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 @EnableConfigurationProperties(value = AppProps.class)
@@ -19,24 +19,23 @@ public class ExchangeRateService {
     private final AppProps appProps;
     private final AmountValidation amountValidation;
     private final List<String> codes;
-
+    private final CurrencyExistsValidation currencyExistsValidation;
     public ExchangeRateService(
             ExchangeRateAPIClient exchangeRateAPIClient,
             AppProps appProps,
-            AmountValidation amountValidation
-    ) {
+            AmountValidation amountValidation) {
         this.exchangeRateAPIClient = exchangeRateAPIClient;
         this.appProps = appProps;
         this.amountValidation = amountValidation;
-
         this.codes = new ArrayList<>();
 
         for (CurrencyDTO code : appProps.getCurrencies()) {
             this.codes.add(code.code());
         }
+        this.currencyExistsValidation = new CurrencyExistsValidation(codes);
     }
 
-    @Cacheable(value = "currencies", key = "#root.methodName")
+//    @Cacheable(value = "currencies", key = "#root.methodName")
     public Set<CurrencyDTO> getAvailableCurrencies() {
         System.out.println("Redis not used");
         return this.appProps.getCurrencies();
@@ -51,29 +50,19 @@ public class ExchangeRateService {
         return this.exchangeRateAPIClient.getCurrencyConversionWithAmount(current, target, amount);
     }
 
-    @Cacheable(value = "currencies", key = "#root.methodName")
+//    @Cacheable(value = "currencies", key = "#root.methodName")
     public ExchangeRateDataDTO getExchangeRate(String current) {
         System.out.println("Redis not used");
-
-        Optional<String> expectedCurrency = codes.stream().filter(code -> Objects.equals(code, current)).findFirst();
-
-        if (expectedCurrency.isEmpty()) {
-            throw new NotFoundException("Currency not found.");
-        }
-
+        currencyExistsValidation.validate(current);
         return this.exchangeRateAPIClient.getCurrencyInfo(current);
     }
 
     public ExchangeRateDataDTO currencyComparison(String current, List<String> targets) {
-        ExchangeRateDataDTO response = exchangeRateAPIClient.getCurrencyInfo(current);
-
-        Optional<String> expectedCurrency = codes.stream().filter(code -> Objects.equals(code, current)).findFirst();
-
-        List<String> filteredList = targets.stream().filter(codes::contains).toList();
-
-        if (filteredList.size() != targets.size() || expectedCurrency.isEmpty()) {
-            throw new NotFoundException("Currency not found.");
+        currencyExistsValidation.validate(current);
+        for (String target: targets){
+            currencyExistsValidation.validate(target);
         }
+        ExchangeRateDataDTO response = exchangeRateAPIClient.getCurrencyInfo(current);
 
         if (response.result().equals("success")) {
             Map<String, Double> filteredConversionRates = new HashMap<>();
