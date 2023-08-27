@@ -40,7 +40,7 @@ public class ExchangeRateService {
         return this.exchangeRateAPIClient.getCurrencyConversionWithAmount(current, target, amount);
     }
 
-    @Cacheable(value = "rates", key = "#root.methodName")
+    @Cacheable(value = "currencies", key = "#root.methodName")
     public ExchangeRateDataDTO getExchangeRate(String current) {
         List<String> codes = new ArrayList<>();
 
