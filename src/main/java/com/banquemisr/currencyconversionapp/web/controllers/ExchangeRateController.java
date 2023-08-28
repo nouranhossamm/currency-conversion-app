@@ -3,7 +3,6 @@ package com.banquemisr.currencyconversionapp.web.controllers;
 import com.banquemisr.currencyconversionapp.dto.*;
 import com.banquemisr.currencyconversionapp.entities.Response;
 import com.banquemisr.currencyconversionapp.service.ExchangeRateService;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +20,6 @@ public class ExchangeRateController {
     }
 
     @GetMapping
-    @Cacheable(value = "currencies", key = "#root.methodName")
     public ResponseEntity<Response<Set<CurrencyDTO>>> getAvailableCurrencies() {
         Set<CurrencyDTO> currencyDTOS = this.exchangeRateService.getAvailableCurrencies();
 
@@ -71,7 +69,6 @@ public class ExchangeRateController {
     }
 
     @GetMapping("{current}")
-    @Cacheable(value = "currencies", key = "#root.methodName")
     public ResponseEntity<Response<ComparisonDTO>> getExchangeRate(@PathVariable("current") String current) {
         ComparisonDTO rateDataDTO = this.exchangeRateService.getExchangeRate(current);
 

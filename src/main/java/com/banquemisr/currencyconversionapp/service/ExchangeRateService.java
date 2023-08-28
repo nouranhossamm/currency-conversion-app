@@ -6,6 +6,8 @@ import com.banquemisr.currencyconversionapp.props.AppProps;
 import com.banquemisr.currencyconversionapp.validation.AmountValidation;
 import com.banquemisr.currencyconversionapp.validation.CurrencyExistsValidation;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -47,6 +49,7 @@ public class ExchangeRateService {
         return this.exchangeRateAPIClient.getCurrencyConversionWithAmount(current, target, amount);
     }
 
+    @Cacheable(value="ComparisonDTO", key="#comparisonDTO")
     public ComparisonDTO getExchangeRate(String current) {
         System.out.println("Redis not used");
         currencyExistsValidation.validate(current);
