@@ -57,7 +57,7 @@ public class ExchangeRateController {
      * @author Menna Moataz
      * @author Muhammad Bassiouni
      */
-    @GetMapping("{current}/{target}")
+    @GetMapping("convert/{current}/{target}")
     public ResponseEntity<Response<UnitCurrencyConversionDTO>> getCurrencyConversion(
         @PathVariable("current") String current,
         @PathVariable("target") String target
@@ -87,7 +87,7 @@ public class ExchangeRateController {
      * @author Menna Moataz
      * @author Muhammad Bassiouni
      */
-    @GetMapping("{current}/{target}/{amount}")
+    @GetMapping("convert/{current}/{target}/{amount}")
     public ResponseEntity<Response<CurrencyConversionDTO>> getCurrencyConversionWithAmount(
         @PathVariable("current") String current,
         @PathVariable("target") String target,
@@ -115,7 +115,7 @@ public class ExchangeRateController {
      * of type {@link com.banquemisr.currencyconversionapp.dto.ComparisonDTO ComparisonDTO}
      * containing <code>conversion_rates</code> relative to <code>base_code</code>
      */
-    @GetMapping("comparison")
+    @PostMapping("comparison")
     public ResponseEntity<Response<ComparisonDTO>> getCurrencyComparison(
         @RequestBody CurrencyComparisonRequestBodyPOJO requestBody
     ) {
