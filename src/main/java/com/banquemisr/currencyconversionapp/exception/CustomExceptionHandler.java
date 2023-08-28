@@ -37,6 +37,7 @@ public class CustomExceptionHandler {
                 .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
                 .status(HttpStatus.INTERNAL_SERVER_ERROR.name())
                 .build();
+        System.out.println(exception.getMessage());
 
         return ResponseEntity.status(response.statusCode()).body(response);
     }

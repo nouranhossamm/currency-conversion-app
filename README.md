@@ -15,7 +15,7 @@
 - [ ] Design: DB Diagram, class diagram
 - [x] Caching (Nouran)
 - [x] Testing (testing)
-- [ ] Clean code, good naming and good comments
-- [ ] Java docs for the code (Author, the purpose of the function, ins and outs of the code)
-- [ ] Improve Swagger API docs
-- [ ] Make the repo look good (structure)
+- [X] Clean code, good naming and good comments
+- [x] Java docs for the code (Author, the purpose of the function, ins and outs of the code)
+- [x] Improve Swagger API docs
+- [x] Make the repo look good (structure)

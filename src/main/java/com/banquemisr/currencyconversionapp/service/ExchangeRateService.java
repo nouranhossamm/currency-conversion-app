@@ -6,6 +6,7 @@ import com.banquemisr.currencyconversionapp.props.AppProps;
 import com.banquemisr.currencyconversionapp.validation.AmountValidation;
 import com.banquemisr.currencyconversionapp.validation.CurrencyExistsValidation;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -16,7 +17,6 @@ public class ExchangeRateService {
     private final ExchangeRateAPIClient exchangeRateAPIClient;
     private final AppProps appProps;
     private final AmountValidation amountValidation;
-    private final List<String> codes;
     private final CurrencyExistsValidation currencyExistsValidation;
     public ExchangeRateService(
             ExchangeRateAPIClient exchangeRateAPIClient,
@@ -25,19 +25,21 @@ public class ExchangeRateService {
         this.exchangeRateAPIClient = exchangeRateAPIClient;
         this.appProps = appProps;
         this.amountValidation = amountValidation;
-        this.codes = new ArrayList<>();
+        List<String> codes = new ArrayList<>();
 
         for (CurrencyDTO code : appProps.getCurrencies()) {
-            this.codes.add(code.code());
+            codes.add(code.code());
         }
         this.currencyExistsValidation = new CurrencyExistsValidation(codes);
     }
 
+    @Cacheable("list")
     public Set<CurrencyDTO> getAvailableCurrencies() {
         System.out.println("Redis not used");
         return this.appProps.getCurrencies();
     }
 
+    @Cacheable("currency_conversion")
     public UnitCurrencyConversionDTO currencyConversion(String current, String target) {
         return this.exchangeRateAPIClient.getCurrencyConversion(current, target);
     }
@@ -45,12 +47,6 @@ public class ExchangeRateService {
     public CurrencyConversionDTO currencyConversion(String current, String target, Double amount) {
         amountValidation.validate(amount);
         return this.exchangeRateAPIClient.getCurrencyConversionWithAmount(current, target, amount);
-    }
-
-    public ComparisonDTO getExchangeRate(String current) {
-        System.out.println("Redis not used");
-        currencyExistsValidation.validate(current);
-        return this.exchangeRateAPIClient.getCurrencyInfo(current);
     }
 
     public ComparisonDTO currencyComparison(String current, List<String> targets) {

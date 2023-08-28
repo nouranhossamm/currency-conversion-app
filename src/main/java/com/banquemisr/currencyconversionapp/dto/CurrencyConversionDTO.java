@@ -5,6 +5,8 @@ package com.banquemisr.currencyconversionapp.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 
+import java.io.Serializable;
+
 @Builder
 public record CurrencyConversionDTO(
 	@JsonProperty("base_code")
@@ -15,5 +17,5 @@ public record CurrencyConversionDTO(
 	Double conversionRate,
 	@JsonProperty("conversion_result")
 	Double conversionResult
-) {
+) implements Serializable {
 }

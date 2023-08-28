@@ -3,8 +3,6 @@ external-api: ${API_URL}
 spring:
   cache:
     type: redis
-    redis:
-      time-to-live: 3600S
   data:
     redis:
       host: localhost

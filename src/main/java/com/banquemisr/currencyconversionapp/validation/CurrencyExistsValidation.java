@@ -10,6 +10,11 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Validate whether a currency code exists in a given list
+ * @author Muhammad Bassiouni
+ * @author Menna Moataz
+ */
 @Component
 public class CurrencyExistsValidation implements Validate<String> {
     private final List<String> currencyDTOList;

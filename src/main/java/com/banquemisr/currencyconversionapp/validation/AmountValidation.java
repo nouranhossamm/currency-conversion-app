@@ -3,6 +3,9 @@ package com.banquemisr.currencyconversionapp.validation;
 import com.banquemisr.currencyconversionapp.exception.BadEntryException;
 import org.springframework.stereotype.Component;
 
+/**
+ * @author Menna Moataz
+ */
 @Component
 public class AmountValidation implements Validate<Double> {
     @Override

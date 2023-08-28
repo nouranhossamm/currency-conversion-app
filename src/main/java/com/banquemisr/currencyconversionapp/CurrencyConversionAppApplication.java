@@ -5,6 +5,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.cache.annotation.EnableCaching;
 
+/**
+ * Entry point of Spring Application
+ * @author Muhammad Bassiouni
+ */
 @SpringBootApplication
 @EnableFeignClients
 @EnableCaching
@@ -15,6 +19,3 @@ public class CurrencyConversionAppApplication {
     }
 
 }
-
-//    http://localhost:8099/swagger-ui/index.html
-//    http://localhost:8099/v3/api-docs/
