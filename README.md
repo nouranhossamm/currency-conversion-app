@@ -78,47 +78,70 @@ The following is the structure file of this project:
 
 .
 ├── currency-conversion-app-master
+
+
      ├── .idea
+     
      │   ├── .gitignore
+     
      │   ├── compiler.xml
+     
      │   ├── encoding.xml
+     
      │   ├── jarRepositories.xml
+     
      │   ├── misc.xml
+     
      │   └── workspace.xml
+
+     
      ├── .mvn
+     
      │   ├── wrapper
+     
      │       ├── maven-wrapper.jar
+     
      │       ├── maven-wrapper.properties
+     
      ├── src
+     
      │   ├── main
+     
      │   │   ├── java
+     
      │   │   │   ├── com
+     
      │   │   │   │   └── banquemisr.currencyconversionapp
+     
      │   │   │   │       └── client
+     
      │   │   │   │           └──ExchangeRateAPIClient
+     
      │   │   │   │       └── config
+     
      │   │   │   │           └── CachingConfig
-     │   │   │   │       └── dto
-     │   │   │   │           ├── ComparisonDTO
-     │   │   │   │           ├── CurrencyComparisonRequestBodyPOJO
-     │   │   │   │           ├── CurrencyConversionDTO
-     │   │   │   │           ├── CurrencyDTO
-     │   │   │   │           └── UnitCurrencyConversionDTO
-     │   │   │   │       └── entities
-     │   │   │   │           └── Response
-     │   │   │   │       └── exception
-     │   │   │   │           ├── BadEntryException
-     │   │   │   │           ├── CustomExceptionHandler
-     │   │   │   │           └── NotFoundException
-     │   │   │   │       └── props
-     │   │   │   │           └── AppProps
-     │   │   │   │       └── service
-     │   │   │   │           └── ExchangeRateService
-     │   │   │   │       └── validation
-     │   │   │   │           ├── AmountValidation
-     │   │   │   │           ├── CurrencyExistsValidation
-     │   │   │   │           └── validate
-     │   │   │   │       └── web.controllers
+     
+     │   │   │   │       └── dto    
+     │   │   │   │           ├── ComparisonDTO     
+     │   │   │   │           ├── CurrencyComparisonRequestBodyPOJO     
+     │   │   │   │           ├── CurrencyConversionDTO     
+     │   │   │   │           ├── CurrencyDTO     
+     │   │   │   │           └── UnitCurrencyConversionDTO     
+     │   │   │   │       └── entities     
+     │   │   │   │           └── Response     
+     │   │   │   │       └── exception     
+     │   │   │   │           ├── BadEntryException     
+     │   │   │   │           ├── CustomExceptionHandler    
+     │   │   │   │           └── NotFoundException     
+     │   │   │   │       └── props     
+     │   │   │   │           └── AppProps     
+     │   │   │   │       └── service     
+     │   │   │   │           └── ExchangeRateService     
+     │   │   │   │       └── validation     
+     │   │   │   │           ├── AmountValidation     
+     │   │   │   │           ├── CurrencyExistsValidation    
+     │   │   │   │           └── validate     
+     │   │   │   │       └── web.controllers   
      │   │   │   │           └── ExchangeRateController
      │   │   │   │       └── CurrencyConversionAppApplication
      │   │   └── resources
