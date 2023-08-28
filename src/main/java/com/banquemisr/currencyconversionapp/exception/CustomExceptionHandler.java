@@ -1,6 +1,6 @@
 package com.banquemisr.currencyconversionapp.exception;
 
-import com.banquemisr.currencyconversionapp.model.entities.Response;
+import com.banquemisr.currencyconversionapp.entities.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

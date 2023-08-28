@@ -6,7 +6,7 @@ import lombok.*;
 import java.util.List;
 
 @Builder
-public record CurrencyComparisonRequestBodyDTO(
+public record CurrencyComparisonRequestBodyPOJO(
     @JsonProperty("base_code")
     String baseCode,
     @JsonProperty("target_codes")

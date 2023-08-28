@@ -3,17 +3,18 @@ package com.banquemisr.currencyconversionapp.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 
-import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @Builder
-public record ExchangeRateDataDTO(
+public record ComparisonDTO(
     @JsonProperty("result")
     String result,
     @JsonProperty("base_code")
     String baseCode,
     @JsonProperty("target_codes")
-    List<String> targetCodes,
+    Set<String> targetCodes,
     @JsonProperty("conversion_rates")
-    Map<String, Double> conversionRates) {
+    Map<String, Double> conversionRates
+) {
 }

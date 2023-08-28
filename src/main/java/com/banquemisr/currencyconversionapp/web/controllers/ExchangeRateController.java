@@ -1,8 +1,10 @@
 package com.banquemisr.currencyconversionapp.web.controllers;
 
 import com.banquemisr.currencyconversionapp.dto.*;
-import com.banquemisr.currencyconversionapp.model.entities.Response;
+import com.banquemisr.currencyconversionapp.entities.Response;
 import com.banquemisr.currencyconversionapp.service.ExchangeRateService;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,12 +21,17 @@ public class ExchangeRateController {
     }
 
     @GetMapping
+    @Cacheable(value = "currencies", key = "#root.methodName")
     public ResponseEntity<Response<Set<CurrencyDTO>>> getAvailableCurrencies() {
         Set<CurrencyDTO> currencyDTOS = this.exchangeRateService.getAvailableCurrencies();
-        Response<Set<CurrencyDTO>> response = new Response<>(200,
+
+        Response<Set<CurrencyDTO>> response = new Response<>(
+                HttpStatus.OK.value(),
                 "success",
                 "Currency list retrieved successfully",
-                currencyDTOS);
+                currencyDTOS
+        );
+
         return ResponseEntity.ok(response);
     }
 
@@ -34,10 +41,14 @@ public class ExchangeRateController {
         @PathVariable("target") String target
     ) {
         UnitCurrencyConversionDTO currencyConversion = this.exchangeRateService.currencyConversion(current, target);
-        Response<UnitCurrencyConversionDTO> response = new Response<>(200,
+
+        Response<UnitCurrencyConversionDTO> response = new Response<>(
+                HttpStatus.OK.value(),
                 "success",
                 "Currency converted successfully",
-                currencyConversion);
+                currencyConversion
+        );
+
         return ResponseEntity.ok(response);
     }
 
@@ -48,35 +59,48 @@ public class ExchangeRateController {
         @PathVariable("amount") Double amount
     ) {
         CurrencyConversionDTO conversionDTO = this.exchangeRateService.currencyConversion(current, target, amount);
-        Response<CurrencyConversionDTO> response = new Response<>(200,
+
+        Response<CurrencyConversionDTO> response = new Response<>(
+                HttpStatus.OK.value(),
                 "success",
                 "Currency converted successfully with the provided amount",
-                conversionDTO);
+                conversionDTO
+        );
+
         return ResponseEntity.ok(response);
     }
 
     @GetMapping("{current}")
-    public ResponseEntity<Response<ExchangeRateDataDTO>> getExchangeRate(@PathVariable("current") String current) {
-        ExchangeRateDataDTO rateDataDTO = this.exchangeRateService.getExchangeRate(current);
-        Response<ExchangeRateDataDTO> response = new Response<>(200,
+    @Cacheable(value = "currencies", key = "#root.methodName")
+    public ResponseEntity<Response<ComparisonDTO>> getExchangeRate(@PathVariable("current") String current) {
+        ComparisonDTO rateDataDTO = this.exchangeRateService.getExchangeRate(current);
+
+        Response<ComparisonDTO> response = new Response<>(
+                HttpStatus.OK.value(),
                 "success",
                 "Currency retrieved successfully",
-                rateDataDTO);
+                rateDataDTO
+        );
+
         return ResponseEntity.ok(response);
     }
 
     @GetMapping("comparison")
-    public ResponseEntity<Response<ExchangeRateDataDTO>> getCurrencyComparison(
-        @RequestBody CurrencyComparisonRequestBodyDTO requestBodyDTO
+    public ResponseEntity<Response<ComparisonDTO>> getCurrencyComparison(
+        @RequestBody CurrencyComparisonRequestBodyPOJO requestBodyDTO
     ) {
-        ExchangeRateDataDTO exchangeRateDataDTO = this.exchangeRateService.currencyComparison(
+        ComparisonDTO comparisonDTO = this.exchangeRateService.currencyComparison(
             requestBodyDTO.baseCode(),
             requestBodyDTO.targetCodes()
         );
-        Response<ExchangeRateDataDTO> response = new Response<>(200,
+
+        Response<ComparisonDTO> response = new Response<>(
+                HttpStatus.OK.value(),
                 "success",
                 "Comparison done successfully",
-                exchangeRateDataDTO);
+                comparisonDTO
+        );
+
         return ResponseEntity.ok(response);
     }
 }

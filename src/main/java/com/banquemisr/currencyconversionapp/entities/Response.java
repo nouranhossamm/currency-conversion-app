@@ -1,4 +1,4 @@
-package com.banquemisr.currencyconversionapp.model.entities;
+package com.banquemisr.currencyconversionapp.entities;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
