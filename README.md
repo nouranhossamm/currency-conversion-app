@@ -63,7 +63,8 @@ The following table summarizes the API endpoints and their parameters:
 
 #### Responses
 ---
-- ```json
+- getAvailableCurrencies
+  ```json
      {
        "status_code": 0,
        "status": "string",
@@ -81,7 +82,8 @@ The following table summarizes the API endpoints and their parameters:
          }
        }
      }```
-- ```json
+-  getCurrencyConversion
+  ```json
      {
   "status_code": 200,
   "status": "success",
@@ -96,9 +98,10 @@ The following table summarizes the API endpoints and their parameters:
       "icon_url": "https://www.xe.com/static-images/usd.static.e8b657d1161a08a32415d284a8e1dc89.svg",
       "name": "United States Dollar",
       "code": "USD"
-    }, ]
+    },... ]
      }```
-- ```json
+-  getCurrencyConversion
+  ```json
      {
        "status_code": 0,
        "status": "string",
