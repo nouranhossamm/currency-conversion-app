@@ -44,7 +44,6 @@ class ExchangeRateServiceTest {
 //                new ExchangeRateService(exchangeRateAPIClient, appProps, validator);
 //    }
 
-
     @Test
     void itShouldGetAvailableCurrencies() {
 //        when(appProps.getCurrencies()).thenReturn(Collections.singleton(new CurrencyDTO("US Dollar", "USD", "")));
