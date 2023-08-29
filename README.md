@@ -32,7 +32,7 @@ The following diagram shows the high-level architecture of this project:
 - Swagger
 - Deploy      
      - Render
-          - https://concurrency-api.onrender.com/                      |
+          - https://concurrency-api.onrender.com/                     
 
 
 
