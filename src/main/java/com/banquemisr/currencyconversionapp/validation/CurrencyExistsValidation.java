@@ -20,6 +20,12 @@ public class CurrencyExistsValidation implements Validate<String> {
     @Setter
     private List<String> currencyDTOList;
 
+    /**
+     * Validates whether a currency code exists in the given list.
+     *
+     * @param current The currency code to validate.
+     * @throws NotFoundException if the currency code is not found in the list.
+     */
     @Override
     public void validate(String current) {
         Optional<String> expectedCurrency = currencyDTOList.stream()
