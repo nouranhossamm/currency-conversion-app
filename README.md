@@ -115,7 +115,7 @@ The following table summarizes the API endpoints and their parameters:
        }
      }
   ```
-  - getCurrencyComparison
+- getCurrencyComparison
     ```json
      {
        "status_code": 0,
