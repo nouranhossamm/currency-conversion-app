@@ -18,6 +18,14 @@ The following diagram shows the high-level architecture of this project:
 
 
 
+## Features
+
+1.Currency Conversion: This application converting a given currency to another currency.
+2.Currency Comparison: This application can also compare between two currencies.
+3.Favorite List: This application allowing add currencies you use often to your favourites.
+
+
+
 ## API Contract
 
 The API contract defines the format and structure of the requests and responses that 
