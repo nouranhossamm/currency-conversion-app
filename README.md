@@ -26,7 +26,7 @@ The following diagram shows the high-level architecture of this project:
 
 3. Favorite List: Allowing add currencies you use often to your favourites.
 
-4. Dynamic chart: 
+4. Dynamic chart: graphical representation of currencies rates
 
 
 
