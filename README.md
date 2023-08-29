@@ -20,11 +20,13 @@ The following diagram shows the high-level architecture of this project:
 
 ## Features
 
-1.Currency Conversion: This application converting a given currency to another currency.
+1.Currency Conversion: Converting a given currency to another currency.
 
-2.Currency Comparison: This application can also compare between two currencies.
+2.Currency Comparison: Compare between two currencies.
 
-3.Favorite List: This application allowing add currencies you use often to your favourites.
+3.Favorite List: Allowing add currencies you use often to your favourites.
+
+4.Dynamic chart: 
 
 
 
@@ -36,14 +38,12 @@ principles and uses JSON as the data format.
 
 The following table summarizes the API endpoints and their parameters:
 
-| *Endpoint*                       | *Method* | *Parameters*             |
-|----------------------------------|----------|--------------------------|
-| /getCurrencyInfo                 | GET      | currency_code            |
-| /getCurrencyConversion           | GET      | current, target          |
-| /getCurrencyConversionWithAmount | GET      | current, target, amount  |
-| /getAvailableCurrencies          | GET      | currencies               |
-| /getExchangeRate                 | GET      | current                  |
-| /getCurrencyComparison           | GET      | basecode, targetcodes    |
+|           *Endpoint*                 |      *Method*      |      *Parameters*               |
+|--------------------------------------|--------------------|---------------------------------|
+|      getAvailableCurrencies          |      GET           |      No parameters              |     
+|      getCurrencyConversion           |      GET           |      (current, target)          |
+|      getCurrencyConversionWithAmount |      GET           |      (current, target, amount)  |
+|      getCurrencyComparison           |      POST          |      (basecode, targetcodes)    |
 
 
 
