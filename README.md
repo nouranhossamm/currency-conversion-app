@@ -128,8 +128,9 @@ The following is the structure file of this project:
      │       └── java
      │           └── com
      │               └── banquemisr.currencyconversionapp
-     │                   └── service
-     │                       └── CurrencyConversionAppApplicationTests
+     │                   └── service 
+     │                       └── ExchangeRateServiceTest
+     |                   └── CurrencyConversionAppApplicationTests
      │
      ├── .env
      ├── .gitignore
