@@ -14,8 +14,8 @@ the user requests and communicate with the model and view layers.
 
 The following diagram shows the high-level architecture of this project:
 
-![alt](![Screenshot 2023-08-29 163415](https://github.com/Bassiouni/currency-conversion-app/assets/142849115/1e33aeef-b39e-4e4d-a5b5-95e8af93477a)
-)
+![Screenshot 2023-08-29 163415](https://github.com/Bassiouni/currency-conversion-app/assets/142849115/1e33aeef-b39e-4e4d-a5b5-95e8af93477a)
+
 
 
 ## API Contract
