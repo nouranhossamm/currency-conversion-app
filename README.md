@@ -81,9 +81,8 @@ The following table summarizes the API endpoints and their parameters:
            "additionalProp3": 0
          }
        }
-     }```
+     }
 -  getCurrencyConversion
-  ```json
      {
   "status_code": 200,
   "status": "success",
@@ -99,9 +98,8 @@ The following table summarizes the API endpoints and their parameters:
       "name": "United States Dollar",
       "code": "USD"
     },... ]
-     }```
--  getCurrencyConversion
-  ```json
+     }
+- getCurrencyConversionWithAmount
      {
        "status_code": 0,
        "status": "string",
@@ -111,8 +109,8 @@ The following table summarizes the API endpoints and their parameters:
          "target_code": "string",
          "conversion_rate": 0
        }
-     }```
-  - ```json
+     }
+  - getCurrencyComparison
      {
        "status_code": 0,
        "status": "string",
