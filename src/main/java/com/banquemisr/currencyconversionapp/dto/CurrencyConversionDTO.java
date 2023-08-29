@@ -7,6 +7,13 @@ import lombok.Builder;
 
 import java.io.Serializable;
 
+/** 
+ * DTO for API Response used in Conversion
+ * @param basecode base currency code
+ * @param targetcode target currency code
+ * @param conversionrate the conversion rate
+ * @param conversionresult the conversion result
+*/
 @Builder
 public record CurrencyConversionDTO(
 	@JsonProperty("base_code")

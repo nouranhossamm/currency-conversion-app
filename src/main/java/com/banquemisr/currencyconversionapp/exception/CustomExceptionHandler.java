@@ -6,6 +6,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+/**
+ * The CustomExceptionHandler class handles exceptions of type BadEntryException and returns a
+ * ResponseEntity object with a custom response.
+ */
 @ControllerAdvice
 public class CustomExceptionHandler {
     @ExceptionHandler(value = BadEntryException.class)
@@ -17,6 +21,14 @@ public class CustomExceptionHandler {
         return ResponseEntity.status(response.statusCode()).body(response);
     }
 
+    /**
+     * The function handles the NotFoundException by creating a response object with the exception
+     * message and status code, and returning it as a ResponseEntity.
+     * 
+     * @param exception The "exception" parameter is an instance of the NotFoundException class, which
+     * is thrown when a resource is not found.
+     * @return The method is returning a ResponseEntity object.
+     */
     @ExceptionHandler(value = NotFoundException.class)
     public ResponseEntity<Object> handleNotFoundException(NotFoundException exception) {
         Response<Object> response = Response
@@ -29,6 +41,10 @@ public class CustomExceptionHandler {
         return ResponseEntity.status(response.statusCode()).body(response);
     }
 
+    // The `@ExceptionHandler` annotation is used to handle specific exceptions thrown by methods in a
+    // controller. In this case, the `handleGenericException` method is annotated with
+    // `@ExceptionHandler(value = {Exception.class, Throwable.class})`, which means it will handle any
+    // exception of type `Exception` or `Throwable`.
     @ExceptionHandler(value = {Exception.class, Throwable.class})
     public ResponseEntity<Object> handleGenericException(Exception exception) {
         Response<Object> response = Response

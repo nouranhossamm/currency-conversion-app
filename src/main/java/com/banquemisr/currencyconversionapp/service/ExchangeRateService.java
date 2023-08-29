@@ -12,6 +12,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.*;
 
+/**
+ * The ExchangeRateService class is a service that handles exchange rate calculations and validations
+ * using an external API and application properties.
+ */
 @Service
 @EnableConfigurationProperties(value = AppProps.class)
 @CacheConfig(cacheNames = "ConCurrency")
@@ -38,22 +42,33 @@ public class ExchangeRateService {
 
     }
 
+    // The `getAvailableCurrencies()` method is retrieving a set of available currencies from the
+    // `AppProps` object. It returns a `Set` of `CurrencyDTO` objects.
     @Cacheable
     public Set<CurrencyDTO> getAvailableCurrencies() {
         return this.appProps.getCurrencies();
     }
 
+    // The `currencyConversion` method is responsible for converting a given currency to another
+    // currency. It takes two parameters: `current` (the currency to convert from) and `target` (the
+    // currency to convert to).
     @Cacheable
     public UnitCurrencyConversionDTO currencyConversion(String current, String target) {
         return this.exchangeRateAPIClient.getCurrencyConversion(current, target);
     }
 
+    // The `currencyConversion` method is responsible for converting a given currency to another
+    // currency with a specified amount. It takes three parameters: `current` (the currency to convert
+    // from), `target` (the currency to convert to), and `amount` (the amount to convert).
     @Cacheable
     public CurrencyConversionDTO currencyConversion(String current, String target, Double amount) {
         amountValidation.validate(amount);
         return this.exchangeRateAPIClient.getCurrencyConversionWithAmount(current, target, amount);
     }
 
+    // The `currencyComparison` method in the `ExchangeRateService` class is responsible for comparing
+    // the exchange rates between a base currency (`current`) and a list of target currencies
+    // (`targets`).
     public ComparisonDTO currencyComparison(String current, List<String> targets) {
         currencyExistsValidation.validate(current);
 
