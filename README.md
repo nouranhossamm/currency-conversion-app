@@ -31,7 +31,7 @@ The following diagram shows the high-level architecture of this project:
 - Redis
 - Swagger
 - Deploy
- 
+  
     └── Render
   
           └── https://concurrency-api.onrender.com/
