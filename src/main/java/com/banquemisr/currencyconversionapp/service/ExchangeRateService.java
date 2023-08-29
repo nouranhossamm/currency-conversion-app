@@ -15,10 +15,20 @@ import java.util.*;
 /**
  * The ExchangeRateService class is a service that handles exchange rate calculations and validations
  * using an external API and application properties.
+ * @author Menna Moataz
+ * @author Nouran Hosameldin
+ * @author Muhammad Bassiouni
  */
 @Service
 @EnableConfigurationProperties(value = AppProps.class)
 @CacheConfig(cacheNames = "ConCurrency")
+/**
+ * Constructs an ExchangeRateService with the specified dependencies.
+ * @param exchangeRateAPIClient     The ExchangeRateAPIClient used to retrieve exchange rate information.
+ * @param appProps                  The application properties containing currency information.
+ * @param amountValidation          The validation component for amount values.
+ * @param currencyExistsValidation  The validation component for currency existence.
+ */
 public class ExchangeRateService {
     private final ExchangeRateAPIClient exchangeRateAPIClient;
     private final AppProps appProps;
@@ -42,33 +52,49 @@ public class ExchangeRateService {
 
     }
 
-    // The `getAvailableCurrencies()` method is retrieving a set of available currencies from the
-    // `AppProps` object. It returns a `Set` of `CurrencyDTO` objects.
+    /**
+     * Retrieves the available currencies from the application properties.
+     * @return A Set of CurrencyDTO objects representing the available currencies.
+     * @author Muhammad Bassiouni
+     */
     @Cacheable
     public Set<CurrencyDTO> getAvailableCurrencies() {
         return this.appProps.getCurrencies();
     }
 
-    // The `currencyConversion` method is responsible for converting a given currency to another
-    // currency. It takes two parameters: `current` (the currency to convert from) and `target` (the
-    // currency to convert to).
+    /**
+     * Converts a given currency to another currency.
+     * @param current The currency to convert from.
+     * @param target  The currency to convert to.
+     * @return A UnitCurrencyConversionDTO object representing the conversion rate.
+     * @author Muhammad Bassiouni
+     */
     @Cacheable
     public UnitCurrencyConversionDTO currencyConversion(String current, String target) {
         return this.exchangeRateAPIClient.getCurrencyConversion(current, target);
     }
 
-    // The `currencyConversion` method is responsible for converting a given currency to another
-    // currency with a specified amount. It takes three parameters: `current` (the currency to convert
-    // from), `target` (the currency to convert to), and `amount` (the amount to convert).
+    /**
+     * Converts a given currency to another currency with a specified amount.
+     * @param current The currency to convert from.
+     * @param target  The currency to convert to.
+     * @param amount  The amount to convert.
+     * @return A CurrencyConversionDTO object representing the conversion result.
+     * @author Nouran Hosameldin
+     */
     @Cacheable
     public CurrencyConversionDTO currencyConversion(String current, String target, Double amount) {
         amountValidation.validate(amount);
         return this.exchangeRateAPIClient.getCurrencyConversionWithAmount(current, target, amount);
     }
 
-    // The `currencyComparison` method in the `ExchangeRateService` class is responsible for comparing
-    // the exchange rates between a base currency (`current`) and a list of target currencies
-    // (`targets`).
+    /**
+     * Compares the exchange rates between a base currency and a list of target currencies.
+     * @param current The base currency to compare from.
+     * @param targets The list of target currencies to compare to.
+     * @return A ComparisonDTO object representing the comparison result.
+     * @author Menna Moataz
+     */
     public ComparisonDTO currencyComparison(String current, List<String> targets) {
         currencyExistsValidation.validate(current);
 

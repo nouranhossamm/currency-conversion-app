@@ -114,6 +114,7 @@ public class ExchangeRateController {
      * @return {@link com.banquemisr.currencyconversionapp.entities.Response Response Entity}
      * of type {@link com.banquemisr.currencyconversionapp.dto.ComparisonDTO ComparisonDTO}
      * containing <code>conversion_rates</code> relative to <code>base_code</code>
+     * @author Menna Moataz
      */
     @PostMapping("compare")
     public ResponseEntity<Response<ComparisonDTO>> getCurrencyComparison(

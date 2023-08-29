@@ -6,9 +6,9 @@ import lombok.Builder;
 import java.io.Serializable;
 
 /**
- * @param basecode The currency which you want to convert from
- * @param targetcode The currency which you want to convert to
- * @param conversionrate the conversion rate
+ * @param baseCode The currency which you want to convert from
+ * @param targetCode The currency which you want to convert to
+ * @param conversionRate the conversion rate
  */
 @Builder
 public record UnitCurrencyConversionDTO(

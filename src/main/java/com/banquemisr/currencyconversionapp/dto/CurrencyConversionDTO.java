@@ -9,10 +9,11 @@ import java.io.Serializable;
 
 /** 
  * DTO for API Response used in Conversion
- * @param basecode base currency code
- * @param targetcode target currency code
- * @param conversionrate the conversion rate
- * @param conversionresult the conversion result
+ * @param baseCode base currency code
+ * @param targetCode target currency code
+ * @param conversionRate the conversion rate
+ * @param conversionResult the conversion result
+ * @author Nouran Hossam
 */
 @Builder
 public record CurrencyConversionDTO(
