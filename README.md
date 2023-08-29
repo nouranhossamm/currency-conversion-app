@@ -83,6 +83,7 @@ The following table summarizes the API endpoints and their parameters:
        }
      }
 -  getCurrencyConversion
+   ```json
      {
   "status_code": 200,
   "status": "success",
