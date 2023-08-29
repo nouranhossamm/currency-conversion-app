@@ -6,13 +6,16 @@ import com.banquemisr.currencyconversionapp.props.AppProps;
 import com.banquemisr.currencyconversionapp.validation.AmountValidation;
 import com.banquemisr.currencyconversionapp.validation.CurrencyExistsValidation;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
 @Service
 @EnableConfigurationProperties(value = AppProps.class)
+@CacheConfig(cacheNames = "ConCurrency")
 public class ExchangeRateService {
     private final ExchangeRateAPIClient exchangeRateAPIClient;
     private final AppProps appProps;
@@ -33,13 +36,13 @@ public class ExchangeRateService {
         this.currencyExistsValidation = new CurrencyExistsValidation(codes);
     }
 
-    @Cacheable("list")
+    @Cacheable
     public Set<CurrencyDTO> getAvailableCurrencies() {
         System.out.println("Redis not used");
         return this.appProps.getCurrencies();
     }
 
-    @Cacheable("currency_conversion")
+    @Cacheable
     public UnitCurrencyConversionDTO currencyConversion(String current, String target) {
         return this.exchangeRateAPIClient.getCurrencyConversion(current, target);
     }
@@ -80,4 +83,7 @@ public class ExchangeRateService {
             .result("failure")
             .build();
     }
+
+    @Scheduled
+    private void deleteCacheOnTime() {}
 }

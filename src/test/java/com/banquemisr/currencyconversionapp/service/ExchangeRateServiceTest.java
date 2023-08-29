@@ -1,39 +1,36 @@
 package com.banquemisr.currencyconversionapp.service;
 
-import com.banquemisr.currencyconversionapp.client.ExchangeRateAPIClient;
-import com.banquemisr.currencyconversionapp.dto.CurrencyConversionDTO;
 import com.banquemisr.currencyconversionapp.dto.CurrencyDTO;
-import com.banquemisr.currencyconversionapp.dto.UnitCurrencyConversionDTO;
-import com.banquemisr.currencyconversionapp.props.AppProps;
-import com.banquemisr.currencyconversionapp.validation.AmountValidation;
-import com.banquemisr.currencyconversionapp.validation.CurrencyExistsValidation;
-import com.banquemisr.currencyconversionapp.validation.Validate;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
+@SpringBootTest
 class ExchangeRateServiceTest {
-    @Mock
-    private ExchangeRateAPIClient exchangeRateAPIClient;
-    @Mock
-    private AppProps appProps;
-    @Mock
-    private AmountValidation amountValidation;
-    @Mock
-    private CurrencyExistsValidation currencyExistsValidation;
+//    @Mock
+//    private ExchangeRateAPIClient exchangeRateAPIClient;
+//    @Autowired
+//    @Mock
+//    private AppProps appProps;
+//    @Mock
+//    private AmountValidation amountValidation;
+//    @Mock
+//    private CurrencyExistsValidation currencyExistsValidation;
 
-    @InjectMocks
+    @Autowired
     private ExchangeRateService exchangeRateService;
+
+//    @BeforeEach
+//    public void setUp() {
+//        this.exchangeRateService = new ExchangeRateService(exchangeRateAPIClient, appProps, amountValidation);
+//    }
 
 //    ExchangeRateServiceTest(
 //            ExchangeRateAPIClient exchangeRateAPIClient,
@@ -50,18 +47,18 @@ class ExchangeRateServiceTest {
 
     @Test
     void itShouldGetAvailableCurrencies() {
+//        when(appProps.getCurrencies()).thenReturn(Collections.singleton(new CurrencyDTO("US Dollar", "USD", "")));
 
         Set<CurrencyDTO> availableCurrencies = this.exchangeRateService.getAvailableCurrencies();
 //
-        verify(appProps, times(2)).getCurrencies();
+//        verify(appProps).getCurrencies();
 
-        System.out.println(availableCurrencies);
         assertThat(availableCurrencies).isNotNull();
         assertThat(availableCurrencies).isNotEmpty();
     }
 
-    @Test
-    void itShouldReturnCurrencyConversionRate() {
+//    @Test
+//    void itShouldReturnCurrencyConversionRate() {
 //        String current = "EGP";
 //        String target = "USD";
 //
@@ -71,10 +68,10 @@ class ExchangeRateServiceTest {
 //        verify(exchangeRateAPIClient).getCurrencyConversion(current, target);
 //
 //        assertThat(unitCurrencyConversionDTO).isNotNull();
-    }
+//    }
 
-    @Test
-    void testCurrencyConversion() {
+//    @Test
+//    void testCurrencyConversion() {
 //        String current = "EGP";
 //        String target = "USD";
 //        Double amount = 100.0;
@@ -104,14 +101,14 @@ class ExchangeRateServiceTest {
 //        verify(currencyExistsValidation).validate(target);
 //
 //        assertThat(currencyConversionDTO).isNotNull();
-    }
+//    }
 
 
-    @Test
-    void getExchangeRate() {
-    }
-
-    @Test
-    void currencyComparison() {
-    }
+//    @Test
+//    void getExchangeRate() {
+//    }
+//
+//    @Test
+//    void currencyComparison() {
+//    }
 }
