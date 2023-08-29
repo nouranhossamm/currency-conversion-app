@@ -1,11 +1,10 @@
 package com.banquemisr.currencyconversionapp.validation;
 
-import com.banquemisr.currencyconversionapp.dto.CurrencyDTO;
 import com.banquemisr.currencyconversionapp.exception.NotFoundException;
-import com.banquemisr.currencyconversionapp.props.AppProps;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -15,12 +14,11 @@ import java.util.Optional;
  * @author Muhammad Bassiouni
  * @author Menna Moataz
  */
+@Getter
 @Component
 public class CurrencyExistsValidation implements Validate<String> {
-    private final List<String> currencyDTOList;
-    public CurrencyExistsValidation(List<String> currencyDTOList) {
-        this.currencyDTOList = currencyDTOList;
-    }
+    @Setter
+    private List<String> currencyDTOList;
 
     @Override
     public void validate(String current) {
