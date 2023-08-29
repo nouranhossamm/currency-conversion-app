@@ -8,9 +8,7 @@ import com.banquemisr.currencyconversionapp.validation.CurrencyExistsValidation;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -32,66 +30,44 @@ public class ExchangeRateService {
         this.exchangeRateAPIClient = exchangeRateAPIClient;
         this.appProps = appProps;
         this.amountValidation = amountValidation;
-        List<String> codes = new ArrayList<>();
 
-        for (CurrencyDTO code : appProps.getCurrencies()) {
-            codes.add(code.code());
-        }
+        List<String> codes = appProps.getCurrencies().stream().map(CurrencyDTO::code).toList();
+
         this.currencyExistsValidation = new CurrencyExistsValidation(codes);
     }
 
-    @Caching(
-            cacheable = @Cacheable,
-            evict = @CacheEvict(
-                    condition = "#root.caches[0].timeNextUpdateUnix() < T(java.lang.System).currentTimeMillis()",
-                    allEntries = true
-            )
-    )
+    @Cacheable
     public Set<CurrencyDTO> getAvailableCurrencies() {
         return this.appProps.getCurrencies();
     }
 
-    @Caching(
-        cacheable = @Cacheable,
-        evict = @CacheEvict(
-            condition = "#root.caches[0].timeNextUpdateUnix() < T(java.lang.System).currentTimeMillis()",
-            allEntries = true
-        )
-    )
+    @Cacheable
     public UnitCurrencyConversionDTO currencyConversion(String current, String target) {
         System.out.println("Not Cached");
         return this.exchangeRateAPIClient.getCurrencyConversion(current, target);
     }
 
-    @Caching(
-            cacheable = @Cacheable,
-            evict = @CacheEvict(
-                    condition = "(!root.caches.empty) && root.caches[0].get", //[0].timeNextUpdateUnix() < T(java.lang.System).currentTimeMillis()",
-                    allEntries = true
-            )
-    )
+    @Cacheable
     public CurrencyConversionDTO currencyConversion(String current, String target, Double amount) {
         System.out.println("Not Cached");
         amountValidation.validate(amount);
         return this.exchangeRateAPIClient.getCurrencyConversionWithAmount(current, target, amount);
     }
 
-    @Caching(
-            cacheable = @Cacheable,
-            evict = @CacheEvict(
-                    condition = "#root.caches[0].timeNextUpdateUnix() < T(java.lang.System).currentTimeMillis()",
-                    allEntries = true
-            )
-    )
+    @Cacheable
     public ComparisonDTO currencyComparison(String current, List<String> targets) {
         System.out.println("Not Cached");
         currencyExistsValidation.validate(current);
 
+        System.out.println(0);
         targets.forEach(this.currencyExistsValidation::validate);
 
+        System.out.println(1);
         ComparisonDTO response = exchangeRateAPIClient.getCurrencyInfo(current);
 
+        System.out.println(2);
         if (!response.result().equals("success")) {
+            System.out.println(3);
             return ComparisonDTO
                     .builder()
                     .result("failure")
@@ -101,11 +77,13 @@ public class ExchangeRateService {
         Map<String, Double> filteredConversionRates = new HashMap<>();
         Map<String, Double> conversionRates = response.conversionRates();
 
+        System.out.println(4);
         targets.forEach(target -> {
             if (conversionRates.containsKey(target)) {
                 filteredConversionRates.put(target, conversionRates.get(target));
             }
         });
+        System.out.println(5);
 
         return ComparisonDTO
             .builder()

@@ -1,6 +1,5 @@
 package com.banquemisr.currencyconversionapp.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 
@@ -19,9 +18,6 @@ import java.util.Set;
  */
 @Builder
 public record ComparisonDTO(
-    @JsonProperty("time_next_update_unix")
-    @JsonIgnore
-    Long timeNextUpdateUnix,
     @JsonProperty("result")
     String result,
     @JsonProperty("base_code")

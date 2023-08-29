@@ -115,14 +115,18 @@ public class ExchangeRateController {
      * of type {@link com.banquemisr.currencyconversionapp.dto.ComparisonDTO ComparisonDTO}
      * containing <code>conversion_rates</code> relative to <code>base_code</code>
      */
-    @PostMapping("comparison")
+    @PostMapping("compare")
     public ResponseEntity<Response<ComparisonDTO>> getCurrencyComparison(
         @RequestBody CurrencyComparisonRequestBodyPOJO requestBody
     ) {
+        System.out.println("0");
+        System.out.println(requestBody);
         ComparisonDTO comparisonDTO = this.exchangeRateService.currencyComparison(
             requestBody.baseCode(),
             requestBody.targetCodes()
         );
+
+        System.out.println("1");
 
         Response<ComparisonDTO> response = new Response<>(
                 HttpStatus.OK.value(),
@@ -130,6 +134,8 @@ public class ExchangeRateController {
                 "Comparison done successfully",
                 comparisonDTO
         );
+
+        System.out.println("2");
 
         return ResponseEntity.ok(response);
     }
