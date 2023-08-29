@@ -18,6 +18,21 @@ The following diagram shows the high-level architecture of this project:
 
 
 
+## Technologies and Tools
+
+---
+- Java 20
+- Maven
+- Spring Boot
+- Restful API
+- Lombok
+- Docker
+- Postman
+- Redis
+- Swagger
+
+
+
 ## Features
 
 1. Currency Conversion: Converting a given currency to another currency.
