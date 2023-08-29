@@ -5,7 +5,6 @@ import com.banquemisr.currencyconversionapp.dto.*;
 import com.banquemisr.currencyconversionapp.props.AppProps;
 import com.banquemisr.currencyconversionapp.validation.AmountValidation;
 import com.banquemisr.currencyconversionapp.validation.CurrencyExistsValidation;
-import lombok.extern.log4j.Log4j2;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
@@ -16,7 +15,6 @@ import java.util.*;
 @Service
 @EnableConfigurationProperties(value = AppProps.class)
 @CacheConfig(cacheNames = "ConCurrency")
-@Log4j2
 public class ExchangeRateService {
     private final ExchangeRateAPIClient exchangeRateAPIClient;
     private final AppProps appProps;
@@ -54,7 +52,6 @@ public class ExchangeRateService {
         return this.exchangeRateAPIClient.getCurrencyConversionWithAmount(current, target, amount);
     }
 
-    @Cacheable
     public ComparisonDTO currencyComparison(String current, List<String> targets) {
         System.out.println("Not Cached");
         currencyExistsValidation.validate(current);
