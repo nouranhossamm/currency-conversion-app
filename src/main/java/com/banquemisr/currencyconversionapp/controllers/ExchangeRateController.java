@@ -13,7 +13,7 @@ import java.util.Set;
  * <p>API router with prefix=/api/v1/currencies</p>
  * <p>This router is concerned with every action related to the retrieval of the currencies' data</p>
  * @author Muhammad Bassiouni
- * @author Nouran Younis
+ * @author Nouran Hosameldin
  * @author Menna Moataz
  */
 @RestController
@@ -84,8 +84,8 @@ public class ExchangeRateController {
      * of type {@link com.banquemisr.currencyconversionapp.dto.CurrencyConversionDTO CurrencyConversionDTO}
      * containing <code>base_code</code>, <code>target_code</code>,
      * <code>conversion_rate</code> and <code>conversion_result</code>
+     * @author Nouran Hosameldin
      * @author Menna Moataz
-     * @author Muhammad Bassiouni
      */
     @GetMapping("convert/{current}/{target}/{amount}")
     public ResponseEntity<Response<CurrencyConversionDTO>> getCurrencyConversionWithAmount(

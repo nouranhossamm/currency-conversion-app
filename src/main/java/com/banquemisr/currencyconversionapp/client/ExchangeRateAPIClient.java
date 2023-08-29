@@ -45,7 +45,7 @@ public interface ExchangeRateAPIClient {
      * @return {@link com.banquemisr.currencyconversionapp.dto.CurrencyConversionDTO CurrencyConversionDTO}
      * containing <code>base_code</code>, <code>target_code</code>,
      * <code>conversion_rate</code> and <code>conversion_result</code>
-     * @author Muhammad Bassiouni
+     * @author Nouran Hosameldin
      */
     @GetMapping("pair/{current}/{target}/{amount}")
     CurrencyConversionDTO getCurrencyConversionWithAmount(
