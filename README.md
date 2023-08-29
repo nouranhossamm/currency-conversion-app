@@ -14,40 +14,8 @@ the user requests and communicate with the model and view layers.
 
 The following diagram shows the high-level architecture of this project:
 
-plantuml
-
-@startuml
-
-package Model {
-class CachingConfig
-class ComparisonDTO
-class CurrencyComparisonRequestBodyPOJO
-class CurrencyConversionDTO
-class CurrencyDTO
-class UnitCurrencyConversionDTO
-class Response
-class BadEntryException
-class CustomExceptionHandler
-class NotFoundException
-class AppProps
-class ExchangeRateService
-class AmountValidation
-class CurrencyExistsValidation
-}
-
-package View {
-class ConvertPage
-class ComparePage
-}
-
-package Controller {
-class ExchangeRateController
-}
-
-Model ..> Controller : provide data and logic
-Controller ..> View : render data and UI
-
-@enduml
+![alt](![Screenshot 2023-08-29 163415](https://github.com/Bassiouni/currency-conversion-app/assets/142849115/1e33aeef-b39e-4e4d-a5b5-95e8af93477a)
+)
 
 
 ## API Contract
