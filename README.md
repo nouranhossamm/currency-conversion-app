@@ -61,6 +61,70 @@ The following table summarizes the API endpoints and their parameters:
 |      getCurrencyConversionWithAmount |      GET           |      (current, target, amount)  |
 |      getCurrencyComparison           |      POST          |      (basecode, targetcodes)    |
 
+#### Responses
+---
+- ```json
+     {
+       "status_code": 0,
+       "status": "string",
+       "message": "string",
+       "data": {
+         "result": "string",
+         "base_code": "string",
+         "target_codes": [
+           "string"
+         ],
+         "conversion_rates": {
+           "additionalProp1": 0,
+           "additionalProp2": 0,
+           "additionalProp3": 0
+         }
+       }
+     }```
+- ```json
+     {
+  "status_code": 200,
+  "status": "success",
+  "message": "Currency list retrieved successfully",
+  "data": [
+    {
+      "icon_url": "https://www.xe.com/static-images/egp.static.df88137050e409e79db3433d9c8b1493.svg",
+      "name": "Egyptian Pound",
+      "code": "EGP"
+    },
+    {
+      "icon_url": "https://www.xe.com/static-images/usd.static.e8b657d1161a08a32415d284a8e1dc89.svg",
+      "name": "United States Dollar",
+      "code": "USD"
+    }, ]
+     }```
+- ```json
+     {
+       "status_code": 0,
+       "status": "string",
+       "message": "string",
+       "data": {
+         "base_code": "string",
+         "target_code": "string",
+         "conversion_rate": 0
+       }
+     }```
+  - ```json
+     {
+       "status_code": 0,
+       "status": "string",
+       "message": "string",
+       "data": {
+         "base_code": "string",
+         "target_code": "string",
+         "conversion_rate": 0,
+         "conversion_result": 0
+       }
+     }```
+
+
+
+
 
 
 ## Structure File
