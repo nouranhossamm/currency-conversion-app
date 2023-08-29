@@ -82,25 +82,28 @@ The following table summarizes the API endpoints and their parameters:
          }
        }
      }
+  ```
 -  getCurrencyConversion
    ```json
      {
-  "status_code": 200,
-  "status": "success",
-  "message": "Currency list retrieved successfully",
-  "data": [
-    {
-      "icon_url": "https://www.xe.com/static-images/egp.static.df88137050e409e79db3433d9c8b1493.svg",
-      "name": "Egyptian Pound",
-      "code": "EGP"
-    },
-    {
-      "icon_url": "https://www.xe.com/static-images/usd.static.e8b657d1161a08a32415d284a8e1dc89.svg",
-      "name": "United States Dollar",
-      "code": "USD"
-    },... ]
+    "status_code": 200,
+    "status": "success",
+    "message": "Currency list retrieved successfully",
+    "data": [
+        {
+          "icon_url": "https://www.xe.com/static-images/egp.static.df88137050e409e79db3433d9c8b1493.svg",
+          "name": "Egyptian Pound",
+          "code": "EGP"
+        },
+        {
+          "icon_url": "https://www.xe.com/static-images/usd.static.e8b657d1161a08a32415d284a8e1dc89.svg",
+          "name": "United States Dollar",
+          "code": "USD"
+        },... ]
      }
+     ```
 - getCurrencyConversionWithAmount
+  ```json
      {
        "status_code": 0,
        "status": "string",
@@ -111,7 +114,9 @@ The following table summarizes the API endpoints and their parameters:
          "conversion_rate": 0
        }
      }
+  ```
   - getCurrencyComparison
+    ```json
      {
        "status_code": 0,
        "status": "string",
@@ -122,7 +127,8 @@ The following table summarizes the API endpoints and their parameters:
          "conversion_rate": 0,
          "conversion_result": 0
        }
-     }```
+     }
+    ```
 
 
 
