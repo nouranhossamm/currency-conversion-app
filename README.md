@@ -30,6 +30,7 @@ The following diagram shows the high-level architecture of this project:
 - Postman
 - Redis
 - Swagger
+- Deploy ---- Render ---- https://concurrency-api.onrender.com/
 
 
 
