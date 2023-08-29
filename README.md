@@ -20,13 +20,13 @@ The following diagram shows the high-level architecture of this project:
 
 ## Features
 
-1.Currency Conversion: Converting a given currency to another currency.
+1. Currency Conversion: Converting a given currency to another currency.
 
-2.Currency Comparison: Compare between two currencies.
+2. Currency Comparison: Compare between two currencies.
 
-3.Favorite List: Allowing add currencies you use often to your favourites.
+3. Favorite List: Allowing add currencies you use often to your favourites.
 
-4.Dynamic chart: 
+4. Dynamic chart: 
 
 
 
