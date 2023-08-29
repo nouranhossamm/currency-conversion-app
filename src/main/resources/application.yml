@@ -5,8 +5,9 @@ spring:
     type: redis
   data:
     redis:
-      host: localhost
+      host: red-cjmsmifjbvhs73em2uag
       port: 6379
+      timeout: 2000ms
 
 available:
   currencies:
