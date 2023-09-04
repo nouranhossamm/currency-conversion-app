@@ -11,6 +11,11 @@ import org.springframework.stereotype.Component;
 
 import java.util.Set;
 
+/**
+ * This class is used to read currency list from props file
+ * (application.yml) using method <code>AppProps.getCurrencies</code>
+ * @author Muhammad Bassiouni
+ */
 @Component
 @Configuration
 @ConfigurationProperties(prefix = "available")
